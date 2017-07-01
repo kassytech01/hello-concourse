@@ -1,9 +1,18 @@
 platform: linux
+
 image_resource:
   type: docker-image
-  source:
+  source: 
     repository: getourneau/alpine-bash-git
+#  source: {repository: busybox}
+
 inputs:
-  - name: hello
+- name: hello
+
 run:
+#  path: bash
+#  args:
+#  - -c
+#  - |
+#    ./hello/hello.sh
   path: ./hello/hello.sh
