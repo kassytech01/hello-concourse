@@ -1,4 +1,3 @@
----
 platform: linux
 
 image_resource:
@@ -7,13 +6,12 @@ image_resource:
     repository: getourneau/alpine-bash-git
 
 inputs:
-  - name: hello # ソースコード
-  - name: result # clone用のGit
-  - name: out # 全タスクの出力を入力にする
+  - name: hello
+  - name: result
+  - name: out
 
 outputs:
-  - name: updated-result # commit用のGitリポジトリ
+  - name: updated-result
 
 run:
   path: ./hello/commit-log.sh
-# echo
