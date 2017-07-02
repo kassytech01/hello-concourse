@@ -1,4 +1,5 @@
-platform: linux
+---
+platform: windows
 
 image_resource:
   type: docker-image
@@ -9,10 +10,12 @@ image_resource:
 inputs:
 - name: hello
 
+outputs:
+- name: out
+
 run:
 #  path: bash
 #  args:
 #  - -c
-#  - |
-#    ./hello/hello.sh
+#  - find .
   path: ./hello/hello.sh
