@@ -16,3 +16,4 @@ outputs:
 
 run:
   path: ./hello/commit-log.sh
+# echo
