@@ -1,27 +1,64 @@
 ---
+
 resources:
+
 - name: hello
+
   type: git
+
   source:
+
     uri: https://github.com/kassytech01/hello-concourse.git
+
 - name: result
+
   type: git
+
   source:
+
     uri: git@gist.github.com:cbbe6439fbfb9e559d040ebf0cb3ea61.git
+
     private_key: {{github-private-key}}
+
     branch: master
 
+
+
 jobs:
+
 - name: job-hello
+
+  public: true
+
+  plan:
+
+  - get: hello
+
+    trigger: true
+
+  - get: result
+
+  - task: run-hello
+
+    file: hello/hello.yml
+
+  - task: commit-log
+
+    file: hello/commit-log.yml
+
+  - put: result
+
+    params:
+
+      repository: updated-result
+
+
+- name: job-show-result
   public: true
   plan:
-  - get: hello
-    trigger: true
+  - get: hello    
   - get: result
-  - task: run-hello
-    file: hello/hello.yml
-  - task: commit-log
-    file: hello/commit-log.yml
-  - put: result
-    params:
-      repository: updated-result
+    trigger: true
+    passed: [ job-hello ]
+  - task: show-result
+    file: hello/show-result.yml
